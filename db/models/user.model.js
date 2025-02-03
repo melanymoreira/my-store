@@ -2,9 +2,11 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 const USER_TABLE = 'users';
 const UserSchema = {
   id: {
-    type: DataTypes.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: DataTypes.INTEGER,
+    /* defaultValue: Sequelize.UUIDV4, */
     primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,

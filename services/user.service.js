@@ -1,5 +1,5 @@
 const boom = require('boom');
-const getConnection = require('../libs/postgres');
+const { models } = require('./../libs/sequelize');
 
 class UserService {
   constructor() {}
@@ -9,9 +9,8 @@ class UserService {
   }
 
   async find() {
-    const client = await getConnection();
-    const rst = await client.query('SELECT * FROM tasks');
-    return rst.rows;
+    const rst = await models.User.findAll();
+    return rst;
   }
 
   async findOne(id) {
