@@ -10,6 +10,6 @@ const sequelize = new Sequelize(URI, {
 });
 
 initModels(sequelize);
-sequelize.sync();
+/* sequelize.sync(); */
 
 module.exports = sequelize;
