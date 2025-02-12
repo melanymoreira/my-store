@@ -1,0 +1,59 @@
+const { Sequelize, Model, DataTypes } = require('sequelize');
+
+const { USER_TABLE } = require('./user.model');
+const CUSTOMER_TABLE = 'customers';
+const CustomerSchema = {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'last_name',
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  createAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'create_at',
+    defaultValue: Sequelize.NOW,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'user_id',
+    references: {
+      model: USER_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
+  },
+};
+
+class Customer extends Model {
+  static associate(models) {
+    this.belongsTo(models.User, {
+      as: 'user',
+    });
+  }
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: CUSTOMER_TABLE,
+      modelName: 'Customer',
+      timestamps: false,
+    };
+  }
+}
+module.exports = { CUSTOMER_TABLE, Customer, CustomerSchema };
