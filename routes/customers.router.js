@@ -9,7 +9,7 @@ const {
 } = require('./../schemas/customer.schema');
 
 const router = express.Router();
-const service = new ProductsService();
+const service = new CustomerService();
 
 router.get('/', async (req, res, next) => {
   try {

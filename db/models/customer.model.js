@@ -26,7 +26,7 @@ const CustomerSchema = {
     allowNull: false,
     type: DataTypes.DATE,
     field: 'create_at',
-    defaultValue: Sequelize.NOW,
+    defaultValue: Sequelize.literal('NOW()'),
   },
   userId: {
     type: DataTypes.INTEGER,
