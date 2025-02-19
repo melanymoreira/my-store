@@ -32,6 +32,7 @@ const CustomerSchema = {
     type: DataTypes.INTEGER,
     allowNull: false,
     field: 'user_id',
+    unique: true,
     references: {
       model: USER_TABLE,
       key: 'id',
