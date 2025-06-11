@@ -1,11 +1,17 @@
 const boom = require('boom');
+const bcrypt = require('bcrypt');
 const { models } = require('./../libs/sequelize');
+const { da } = require('@faker-js/faker');
 
 class UserService {
   constructor() {}
 
   async create(data) {
-    const newUser = await models.User.create(data);
+    const hash = await bcrypt.hash(data.password, 10);
+    const newUser = await models.User.create({
+      ...data,
+      password: hash,
+    });
     return newUser;
   }
 

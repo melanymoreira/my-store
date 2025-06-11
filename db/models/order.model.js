@@ -12,7 +12,7 @@ const OrderSchema = {
   customerId: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    field: 'customers_id',
+    field: 'customer_id',
     references: {
       model: CUSTOMER_TABLE,
       key: 'id',
@@ -23,7 +23,7 @@ const OrderSchema = {
   createAt: {
     allowNull: false,
     type: DataTypes.DATE,
-    field: 'create_at',
+    field: 'created_at',
     defaultValue: Sequelize.literal('NOW()'),
   },
   total: {
