@@ -8,7 +8,6 @@ const phone = Joi.string();
 const userId = Joi.number().integer();
 const password = Joi.string().min(8);
 const email = Joi.string().email();
-const name2 = Joi.string().min(10);
 
 const getCustomerSchema = Joi.object({
   id: id.required(),
