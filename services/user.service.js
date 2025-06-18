@@ -1,7 +1,6 @@
 const boom = require('boom');
 const bcrypt = require('bcrypt');
 const { models } = require('./../libs/sequelize');
-const { da } = require('@faker-js/faker');
 
 class UserService {
   constructor() {}
@@ -12,13 +11,19 @@ class UserService {
       ...data,
       password: hash,
     });
-    delete newUser.dataValues.password; 
+    delete newUser.dataValues.password;
     return newUser;
   }
 
   async find() {
     const rst = await models.User.findAll({
       include: ['customer'],
+    });
+    return rst;
+  }
+  async findByEmail(email) {
+    const rst = await models.User.findOne({
+      where: { email },
     });
     return rst;
   }
